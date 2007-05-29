@@ -5,6 +5,7 @@
 >
 <beans>
 
+<!-- S2.4
     <bean id="transactionManager"
         class="org.seasar.extension.jta.TransactionManagerImpl"/>
     <bean id="userTransaction" class="org.seasar.extension.jta.UserTransactionImpl">
@@ -16,6 +17,16 @@
         class="org.springframework.transaction.jta.JtaTransactionManager">
         <property name="userTransaction">
             <ref bean="userTransaction"/>
+        </property>
+    </bean>
+-->
+
+    <bean id="transactionManager"
+        class="org.seasar.extension.jta.TransactionManagerImpl"/>
+    <bean id="jtaTransactionManager"
+        class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
         </property>
     </bean>
 
@@ -92,6 +103,9 @@
         <property name="valueTypeFactory">
             <ref bean="valueTypeFactory"/>
         </property>
+        <property name="daoNamingConvention">
+            <ref bean="daoNamingConvention"/>
+        </property>
 	</bean>
 	<bean id="valueTypeFactory" class="framework.dao.SpringValueTypeFactoryImpl"/>
 
@@ -104,6 +118,8 @@
         <constructor-arg>
             <ref bean="basicS2DaoInterceptor"/>
         </constructor-arg>
+    </bean>
+	<bean id="daoNamingConvention" class="org.seasar.dao.impl.DaoNamingConventionImpl">
     </bean>
 
 </beans>
