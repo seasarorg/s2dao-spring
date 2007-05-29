@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans
+    PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd"
+>
+<beans>
+
+    <bean id="traceInterceptor" class="org.seasar.framework.aop.interceptors.TraceInterceptor"/>
+
+    <bean class="framework.autoregister.FileSystemBeanAutoRegister">
+        <property name="addPackageName">
+            <value>examples.dao</value>
+        </property>
+        <property name="addClassNames">
+            <value>.*Dao,.*Manager</value>
+        </property>
+        <property name="ignorePackageName">
+            <value>examples.dao</value>
+        </property>
+        <property name="ignoreClassNames">
+            <value>.*Employee2Dao</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>s2DaoInterceptor</value>
+                <value>traceInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="framework.autoregister.FileSystemBeanAutoRegister">
+        <property name="addPackageName">
+            <value>examples.dao</value>
+        </property>
+        <property name="addClassNames">
+            <value>Employee2DaoImpl</value>
+        </property>
+        <property name="autowire">
+            <value>constructor</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>s2DaoInterceptor</value>
+                <value>traceInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans
+    PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd"
+>
+<beans>
+
+    <bean id="txAttribute" 
+          class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+        <property name="properties">
+            <props>
+                <prop key="insert">PROPAGATION_REQUIRED,+java.lang.UnsupportedOperationException</prop>
+                <prop key="update">PROPAGATION_REQUIRED,-java.io.IOException</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="txInterceptor" 
+          class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager"><ref bean="jtaTransactionManager"/></property>
+        <property name="transactionAttributeSource"><ref bean="txAttribute"/></property>
+    </bean>
+
+</beans>
