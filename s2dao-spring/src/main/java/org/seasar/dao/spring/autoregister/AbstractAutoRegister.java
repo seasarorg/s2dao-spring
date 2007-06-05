@@ -28,131 +28,134 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 public abstract class AbstractAutoRegister implements BeanFactoryAware,
-		BeanFactoryPostProcessor {
+    BeanFactoryPostProcessor {
 
-	public static final String INIT_METHOD = "registerAll";
+    public static final String INIT_METHOD = "registerAll";
 
-	private BeanFactory beanFactory;
+    private BeanFactory beanFactory;
 
-	private List classPatterns = new ArrayList();
+    private final List classPatterns = new ArrayList();
 
-	private List ignoreClassPatterns = new ArrayList();
+    private final List ignoreClassPatterns = new ArrayList();
 
-	private String addPackageName;
+    private String addPackageName;
 
-	private String addClassNames;
+    private String addClassNames;
 
-	private String ignorePackageName;
+    private String ignorePackageName;
 
-	private String ignoreClassNames;
+    private String ignoreClassNames;
 
-	public void postProcessBeanFactory(
-			ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		registerAll();
-	}
+    public void postProcessBeanFactory(
+        final ConfigurableListableBeanFactory beanFactory)
+        throws BeansException {
+        registerAll();
+    }
 
-	public DefaultListableBeanFactory getBeanFactory() {
-		return (DefaultListableBeanFactory) beanFactory;
-	}
+    public DefaultListableBeanFactory getBeanFactory() {
+        return (DefaultListableBeanFactory) beanFactory;
+    }
 
-	public void setBeanFactory(BeanFactory beanFactory) {
-		this.beanFactory = beanFactory;
-	}
+    public void setBeanFactory(final BeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
+    }
 
-	public int getClassPatternSize() {
-		return classPatterns.size();
-	}
+    public int getClassPatternSize() {
+        return classPatterns.size();
+    }
 
-	public void addClassPattern() {
-		addClassPattern(new ClassPattern(getAddPackageName(),
-				getAddClassNames()));
-	}
+    public void addClassPattern() {
+        addClassPattern(new ClassPattern(getAddPackageName(),
+            getAddClassNames()));
+    }
 
-	public void addClassPattern(ClassPattern classPattern) {
-		classPatterns.add(classPattern);
-	}
+    public void addClassPattern(final ClassPattern classPattern) {
+        classPatterns.add(classPattern);
+    }
 
-	public ClassPattern getClassPattern(int index) {
-		return (ClassPattern) classPatterns.get(index);
-	}
+    public ClassPattern getClassPattern(final int index) {
+        return (ClassPattern) classPatterns.get(index);
+    }
 
-	public void addIgnoreClassPattern() {
-		if (getIgnoreClassNames() != null){
-			addIgnoreClassPattern(
-				new ClassPattern(getIgnorePackageName(), getIgnoreClassNames()));
-		}
-	}
+    public void addIgnoreClassPattern() {
+        if (getIgnoreClassNames() != null) {
+            addIgnoreClassPattern(new ClassPattern(getIgnorePackageName(),
+                getIgnoreClassNames()));
+        }
+    }
 
-	public void addIgnoreClassPattern(ClassPattern classPattern) {
-		ignoreClassPatterns.add(classPattern);
-	}
+    public void addIgnoreClassPattern(final ClassPattern classPattern) {
+        ignoreClassPatterns.add(classPattern);
+    }
 
-	public abstract void registerAll();
+    public abstract void registerAll();
 
-	protected boolean hasBeanDefinition(String name) {
-		return findBeanDefinition(name) != null;
-	}
+    protected boolean hasBeanDefinition(final String name) {
+        return findBeanDefinition(name) != null;
+    }
 
-	protected BeanDefinition findBeanDefinition(String name) {
-		if (name == null) {
-			return null;
-		}
+    protected BeanDefinition findBeanDefinition(final String name) {
+        if (name == null) {
+            return null;
+        }
 
-		String[] bdNames = getBeanFactory().getBeanDefinitionNames();
-		for (int i = 0; i < getBeanFactory().getBeanDefinitionCount(); ++i) {
-			BeanDefinition bd = getBeanFactory().getBeanDefinition(bdNames[i]);
-			if (name.equals(bd.getBeanClassName())) {
-				return bd;
-			}
-		}
-		return null;
-	}
+        final String[] bdNames = getBeanFactory().getBeanDefinitionNames();
+        for (int i = 0; i < getBeanFactory().getBeanDefinitionCount(); ++i) {
+            final BeanDefinition bd = getBeanFactory().getBeanDefinition(
+                bdNames[i]);
+            if (name.equals(bd.getBeanClassName())) {
+                return bd;
+            }
+        }
+        return null;
+    }
 
-	protected boolean isIgnore(String packageName, String shortClassName) {
-		if (ignoreClassPatterns.isEmpty()) {
-			return false;
-		}
-		for (int i = 0; i < ignoreClassPatterns.size(); ++i) {
-			ClassPattern cp = (ClassPattern) ignoreClassPatterns.get(i);
-			if (!cp.isAppliedPackageName(packageName)) {
-				continue;
-			}
-			if (cp.isAppliedShortClassName(shortClassName)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    protected boolean isIgnore(final String packageName,
+        final String shortClassName) {
+        if (ignoreClassPatterns.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < ignoreClassPatterns.size(); ++i) {
+            final ClassPattern cp = (ClassPattern) ignoreClassPatterns.get(i);
+            if (!cp.isAppliedPackageName(packageName)) {
+                continue;
+            }
+            if (cp.isAppliedShortClassName(shortClassName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void setAddPackageName(String addPackageName) {
-		this.addPackageName = addPackageName;
-	}
+    public void setAddPackageName(final String addPackageName) {
+        this.addPackageName = addPackageName;
+    }
 
-	public String getAddPackageName() {
-		return this.addPackageName;
-	}
+    public String getAddPackageName() {
+        return addPackageName;
+    }
 
-	public void setAddClassNames(String addClassNames) {
-		this.addClassNames = addClassNames;
-	}
+    public void setAddClassNames(final String addClassNames) {
+        this.addClassNames = addClassNames;
+    }
 
-	public String getAddClassNames() {
-		return this.addClassNames;
-	}
+    public String getAddClassNames() {
+        return addClassNames;
+    }
 
-	public void setIgnorePackageName(String ignorePackageName) {
-		this.ignorePackageName = ignorePackageName;
-	}
+    public void setIgnorePackageName(final String ignorePackageName) {
+        this.ignorePackageName = ignorePackageName;
+    }
 
-	public String getIgnorePackageName() {
-		return this.ignorePackageName;
-	}
+    public String getIgnorePackageName() {
+        return ignorePackageName;
+    }
 
-	public void setIgnoreClassNames(String ignoreClassNames) {
-		this.ignoreClassNames = ignoreClassNames;
-	}
+    public void setIgnoreClassNames(final String ignoreClassNames) {
+        this.ignoreClassNames = ignoreClassNames;
+    }
 
-	public String getIgnoreClassNames() {
-		return this.ignoreClassNames;
-	}
+    public String getIgnoreClassNames() {
+        return ignoreClassNames;
+    }
 }

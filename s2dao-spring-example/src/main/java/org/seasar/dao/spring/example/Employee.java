@@ -17,10 +17,11 @@ package org.seasar.dao.spring.example;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Employee implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public static final String TABLE = "EMP";
 
@@ -51,99 +52,100 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(long empno) {
+    public Employee(final long empno) {
         this.empno = empno;
     }
 
     public long getEmpno() {
-        return this.empno;
+        return empno;
     }
 
-    public void setEmpno(long empno) {
+    public void setEmpno(final long empno) {
         this.empno = empno;
     }
 
-    public java.lang.String getEname() {
-        return this.ename;
+    public String getEname() {
+        return ename;
     }
 
-    public void setEname(java.lang.String ename) {
+    public void setEname(final String ename) {
         this.ename = ename;
     }
 
-    public java.lang.String getJob() {
-        return this.job;
+    public String getJob() {
+        return job;
     }
 
-    public void setJob(java.lang.String job) {
+    public void setJob(final String job) {
         this.job = job;
     }
 
     public Short getMgr() {
-        return this.mgr;
+        return mgr;
     }
 
-    public void setMgr(Short mgr) {
+    public void setMgr(final Short mgr) {
         this.mgr = mgr;
     }
 
     public java.util.Date getHiredate() {
-        return this.hiredate;
+        return hiredate;
     }
 
-    public void setHiredate(java.util.Date hiredate) {
+    public void setHiredate(final Date hiredate) {
         this.hiredate = hiredate;
     }
 
     public Float getSal() {
-        return this.sal;
+        return sal;
     }
 
-    public void setSal(Float sal) {
+    public void setSal(final Float sal) {
         this.sal = sal;
     }
 
     public Float getComm() {
-        return this.comm;
+        return comm;
     }
 
-    public void setComm(Float comm) {
+    public void setComm(final Float comm) {
         this.comm = comm;
     }
 
     public int getDeptno() {
-        return this.deptno;
+        return deptno;
     }
 
-    public void setDeptno(int deptno) {
+    public void setDeptno(final int deptno) {
         this.deptno = deptno;
     }
 
     public Timestamp getTimestamp() {
-        return this.timestamp;
+        return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(final Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 
     public Department getDepartment() {
-        return this.department;
+        return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(final Department department) {
         this.department = department;
     }
 
-    public boolean equals(Object other) {
-        if (!(other instanceof Employee))
+    public boolean equals(final Object other) {
+        if (!(other instanceof Employee)) {
             return false;
-        Employee castOther = (Employee) other;
-        return this.getEmpno() == castOther.getEmpno();
+        }
+        final Employee castOther = (Employee) other;
+        return getEmpno() == castOther.getEmpno();
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        final StringBuffer buf = new StringBuffer();
         buf.append(empno).append(", ");
         buf.append(ename).append(", ");
         buf.append(job).append(", ");
@@ -158,6 +160,6 @@ public class Employee implements Serializable {
     }
 
     public int hashCode() {
-        return (int) this.getEmpno();
+        return (int) getEmpno();
     }
 }

@@ -19,9 +19,9 @@ import java.io.Serializable;
 
 public class Department implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String TABLE = "DEPT";
+    public static final String TABLE = "DEPT";
 
     private int deptno;
 
@@ -35,46 +35,47 @@ public class Department implements Serializable {
     }
 
     public int getDeptno() {
-        return this.deptno;
+        return deptno;
     }
 
-    public void setDeptno(int deptno) {
+    public void setDeptno(final int deptno) {
         this.deptno = deptno;
     }
 
-    public java.lang.String getDname() {
-        return this.dname;
+    public String getDname() {
+        return dname;
     }
 
-    public void setDname(java.lang.String dname) {
+    public void setDname(final String dname) {
         this.dname = dname;
     }
 
-    public java.lang.String getLoc() {
-        return this.loc;
+    public String getLoc() {
+        return loc;
     }
 
-    public void setLoc(java.lang.String loc) {
+    public void setLoc(final String loc) {
         this.loc = loc;
     }
 
     public int getVersionNo() {
-        return this.versionNo;
+        return versionNo;
     }
 
-    public void setVersionNo(int versionNo) {
+    public void setVersionNo(final int versionNo) {
         this.versionNo = versionNo;
     }
 
-    public boolean equals(Object other) {
-        if (!(other instanceof Department))
+    public boolean equals(final Object other) {
+        if (!(other instanceof Department)) {
             return false;
-        Department castOther = (Department) other;
-        return this.getDeptno() == castOther.getDeptno();
+        }
+        final Department castOther = (Department) other;
+        return getDeptno() == castOther.getDeptno();
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        final StringBuffer buf = new StringBuffer();
         buf.append(deptno).append(", ");
         buf.append(dname).append(", ");
         buf.append(loc).append(", ");
@@ -83,6 +84,6 @@ public class Department implements Serializable {
     }
 
     public int hashCode() {
-        return this.getDeptno();
+        return getDeptno();
     }
 }

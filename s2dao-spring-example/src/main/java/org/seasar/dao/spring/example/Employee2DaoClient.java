@@ -24,18 +24,20 @@ import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
 
 public class Employee2DaoClient {
 
-    public static void main(String[] args) {
-        BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator.getInstance();
-        BeanFactoryReference ref = locator.useBeanFactory("context");
-        ApplicationContext context = (ApplicationContext) ref.getFactory();
+    public static void main(final String[] args) {
+        final BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator
+            .getInstance();
+        final BeanFactoryReference ref = locator.useBeanFactory("context");
+        final ApplicationContext context = (ApplicationContext) ref
+            .getFactory();
         try {
-            Employee2Dao dao = (Employee2Dao) context
-                    .getBean("employee2Dao");
-            List employees = dao.getEmployees("CO");
+            final Employee2Dao dao = (Employee2Dao) context
+                .getBean("employee2Dao");
+            final List employees = dao.getEmployees("CO");
             for (int i = 0; i < employees.size(); ++i) {
                 System.out.println(employees.get(i));
             }
-            Employee employee = dao.getEmployee(7788);
+            final Employee employee = dao.getEmployee(7788);
             System.out.println(employee);
         } finally {
             ref.release();

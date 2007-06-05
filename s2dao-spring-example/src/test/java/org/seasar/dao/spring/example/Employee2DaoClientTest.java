@@ -15,8 +15,6 @@
  */
 package org.seasar.dao.spring.example;
 
-import org.seasar.dao.spring.example.Employee2DaoClient;
-
 import junit.framework.TestCase;
 
 public class Employee2DaoClientTest extends TestCase {

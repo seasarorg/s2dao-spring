@@ -24,13 +24,15 @@ import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
 
 public class EmployeeAutoDaoClient {
 
-    public static void main(String[] args) {
-        BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator.getInstance();
-        BeanFactoryReference ref = locator.useBeanFactory("context");
-        ApplicationContext context = (ApplicationContext) ref.getFactory();
+    public static void main(final String[] args) {
+        final BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator
+            .getInstance();
+        final BeanFactoryReference ref = locator.useBeanFactory("context");
+        final ApplicationContext context = (ApplicationContext) ref
+            .getFactory();
         try {
-            EmployeeAutoDao dao = (EmployeeAutoDao) context
-                    .getBean("employeeAutoDao");
+            final EmployeeAutoDao dao = (EmployeeAutoDao) context
+                .getBean("employeeAutoDao");
 
             dao.getEmployeeByJobDeptno(null, null);
             dao.getEmployeeByJobDeptno("CLERK", null);
@@ -47,14 +49,14 @@ public class EmployeeAutoDaoClient {
                 System.out.println(employees.get(i));
             }
 
-            EmployeeSearchCondition dto = new EmployeeSearchCondition();
+            final EmployeeSearchCondition dto = new EmployeeSearchCondition();
             dto.setDname("RESEARCH");
             employees = dao.getEmployeesBySearchCondition(dto);
             for (int i = 0; i < employees.size(); ++i) {
                 System.out.println(employees.get(i));
             }
 
-            Employee employee = dao.getEmployeeByEmpno(7788);
+            final Employee employee = dao.getEmployeeByEmpno(7788);
             System.out.println("before timestamp:" + employee.getTimestamp());
             dao.update(employee);
             System.out.println("after timestamp:" + employee.getTimestamp());

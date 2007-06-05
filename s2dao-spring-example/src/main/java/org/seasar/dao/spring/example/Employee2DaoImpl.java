@@ -21,17 +21,17 @@ import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.impl.AbstractDao;
 
 public abstract class Employee2DaoImpl extends AbstractDao implements
-        Employee2Dao {
+    Employee2Dao {
 
     public static Class BEAN = Employee.class;
 
-    public Employee2DaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
+    public Employee2DaoImpl(final DaoMetaDataFactory daoMetaDataFactory) {
         super(daoMetaDataFactory);
     }
 
     public static String getEmployee_ARGS = "empno";
 
-    public List getEmployees(String ename) {
+    public List getEmployees(final String ename) {
         return getEntityManager().find("ename LIKE ?", "%" + ename + "%");
     }
 }

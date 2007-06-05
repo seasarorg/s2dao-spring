@@ -27,7 +27,7 @@ public class EmployeeSearchCondition {
         return dname;
     }
 
-    public void setDname(String dname) {
+    public void setDname(final String dname) {
         this.dname = dname;
     }
 
@@ -35,7 +35,7 @@ public class EmployeeSearchCondition {
         return job;
     }
 
-    public void setJob(String job) {
+    public void setJob(final String job) {
         this.job = job;
     }
 }

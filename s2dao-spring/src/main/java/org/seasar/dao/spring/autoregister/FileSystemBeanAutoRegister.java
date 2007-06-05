@@ -24,29 +24,29 @@ import org.seasar.framework.util.StringUtil;
 
 public class FileSystemBeanAutoRegister extends AbstractBeanAutoRegister {
 
-	public void registerAll() {
-		addClassPattern();
-		addIgnoreClassPattern();
-		for (int i = 0; i < getClassPatternSize(); ++i) {
-			ClassPattern cp = getClassPattern(i);
-			register(cp);
-		}
-	}
+    public void registerAll() {
+        addClassPattern();
+        addIgnoreClassPattern();
+        for (int i = 0; i < getClassPatternSize(); ++i) {
+            final ClassPattern cp = getClassPattern(i);
+            register(cp);
+        }
+    }
 
-	protected void register(ClassPattern classPattern) {
-		String packageName = classPattern.getPackageName();
-		File packageDir = getRootDir();
-		ClassTraversal.forEach(packageDir, packageName, this);
-	}
+    protected void register(final ClassPattern classPattern) {
+        final String packageName = classPattern.getPackageName();
+        final File packageDir = getRootDir();
+        ClassTraversal.forEach(packageDir, packageName, this);
+    }
 
-	protected File getRootDir() {
-		String path = "beanRefContext.xml";
-		File file = ResourceUtil.getResourceAsFile(path);
-		String[] names = StringUtil.split(path, "/");
-		for (int i = 0; i < names.length; ++i) {
-			file = file.getParentFile();
-		}
-		return file;
-	}
+    protected File getRootDir() {
+        final String path = "beanRefContext.xml";
+        File file = ResourceUtil.getResourceAsFile(path);
+        final String[] names = StringUtil.split(path, "/");
+        for (int i = 0; i < names.length; ++i) {
+            file = file.getParentFile();
+        }
+        return file;
+    }
 
 }

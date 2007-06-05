@@ -36,7 +36,7 @@ public interface EmployeeDao {
     public String getEmployeeByDeptno_ARGS = "deptno";
 
     public String getEmployeeByDeptno_QUERY = "/*IF deptno != null*/deptno = /*deptno*/123\n"
-            + "-- ELSE 1=1\n" + "/*END*/";
+        + "-- ELSE 1=1\n" + "/*END*/";
 
     public List getEmployeeByDeptno(Integer deptno);
 

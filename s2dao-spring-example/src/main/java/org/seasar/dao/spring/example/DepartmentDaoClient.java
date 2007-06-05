@@ -22,22 +22,23 @@ import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
 
 public class DepartmentDaoClient {
 
-    public static void main(String[] args) {
-        BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator.getInstance();
-        BeanFactoryReference ref = locator.useBeanFactory("context");
-        ApplicationContext context = (ApplicationContext) ref.getFactory();
+    public static void main(final String[] args) {
+        final BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator
+            .getInstance();
+        final BeanFactoryReference ref = locator.useBeanFactory("context");
+        final ApplicationContext context = (ApplicationContext) ref
+            .getFactory();
 
-        
         try {
-            DepartmentDao dao = (DepartmentDao) context
-                    .getBean("departmentDao");
-            Department dept = new Department();
+            final DepartmentDao dao = (DepartmentDao) context
+                .getBean("departmentDao");
+            final Department dept = new Department();
             dept.setDeptno(99);
             dept.setDname("foo");
             dao.insert(dept);
             dept.setDname("bar");
             System.out
-                    .println("before update versionNo:" + dept.getVersionNo());
+                .println("before update versionNo:" + dept.getVersionNo());
             dao.update(dept);
             System.out.println("after update versionNo:" + dept.getVersionNo());
             dao.delete(dept);
