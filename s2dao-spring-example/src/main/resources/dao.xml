@@ -52,14 +52,18 @@
             <value>100</value>
         </property>
 	</bean>
-	
+
+    <bean name="url" class="org.seasar.dao.spring.EmbeddedHsqldbUrlFactoryBean">
+    	<property name="urlSuffix" value="/data-hsqldb/demo" />
+    	<property name="referenceClassName" value="org.seasar.dao.spring.example.Department" />
+    </bean>
+
     <bean id="xaDataSource"
         class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
         <property name="driverClassName">
             <value>org.hsqldb.jdbcDriver</value>
         </property>
-        <property name="URL">
-            <value>jdbc:hsqldb:hsql://localhost:9001</value>
+        <property name="URL" ref="url">
         </property>
         <property name="user">
             <value>sa</value>
@@ -86,26 +90,24 @@
         </constructor-arg>
     </bean>
 
+    <bean id="beanMetaDataFactory"
+        class="org.seasar.dao.impl.BeanMetaDataFactoryImpl">
+        <property name="annotationReaderFactory" ref="annotationReaderFactory" />
+        <property name="valueTypeFactory" ref="valueTypeFactory" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="daoNamingConvention" ref="daoNamingConvention" />
+        <property name="beanEnhancer" ref="beanEnhancer" />
+    </bean>
+
 	<bean id="annotationReaderFactory" class="org.seasar.dao.impl.FieldAnnotationReaderFactory"/>
 	<bean id="daoMetaDataFactory" class="org.seasar.dao.impl.DaoMetaDataFactoryImpl">
-        <constructor-arg>
-            <ref bean="dataSource"/>
-        </constructor-arg>
-        <constructor-arg>
-            <ref bean="statementFactory"/>
-        </constructor-arg>
-        <constructor-arg>
-            <ref bean="resultSetFactory"/>
-        </constructor-arg>
-        <constructor-arg>
-            <ref bean="annotationReaderFactory"/>
-        </constructor-arg>
-        <property name="valueTypeFactory">
-            <ref bean="valueTypeFactory"/>
-        </property>
-        <property name="daoNamingConvention">
-            <ref bean="daoNamingConvention"/>
-        </property>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="statementFactory" ref="statementFactory"></property>
+        <property name="resultSetFactory" ref="resultSetFactory"></property>
+        <property name="annotationReaderFactory" ref="annotationReaderFactory"></property>
+        <property name="valueTypeFactory" ref="valueTypeFactory"></property>
+        <property name="daoNamingConvention" ref="daoNamingConvention"></property>
+        <property name="beanMetaDataFactory" ref="beanMetaDataFactory"></property>
 	</bean>
 	<bean id="valueTypeFactory" class="org.seasar.dao.spring.SpringValueTypeFactoryImpl"/>
 
@@ -118,6 +120,8 @@
         <constructor-arg>
             <ref bean="basicS2DaoInterceptor"/>
         </constructor-arg>
+    </bean>
+	<bean id="beanEnhancer" class="org.seasar.dao.impl.NullBeanEnhancer">
     </bean>
 	<bean id="daoNamingConvention" class="org.seasar.dao.impl.DaoNamingConventionImpl">
     </bean>
