@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <parent>
+    <groupId>org.seasar.dao.spring</groupId>
+    <artifactId>s2dao-spring-project</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../s2dao-spring-project/pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>s2dao-spring-example</artifactId>
+  <packaging>jar</packaging>
+  <name>S2Dao Spring Example</name>
+  <description></description>
+  <url>http://s2dao-spring.seasar.org/</url>
+
+  <scm>
+    <connection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring-example/trunk/s2dao-spring-example/</connection>
+    <developerConnection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring-example/trunk/s2dao-spring-example/</developerConnection>
+    <url>https://www.seasar.org/svn/sandbox/s2dao-spring-example/trunk/s2dao-spring-example/</url>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>s2dao-spring</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring</artifactId>
+      <version>2.0.5</version>
+    </dependency>
+  </dependencies>
+</project>

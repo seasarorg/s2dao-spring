@@ -92,6 +92,36 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>../s2dao-spring-example</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>deploy</id>
+      <distributionManagement>
+        <repository>
+          <uniqueVersion>false</uniqueVersion>
+          <id>maven.seasar.org</id>
+          <name>The Seasar Foundation Maven2 Repository</name>
+          <url>dav:https://www.seasar.org/maven/maven2</url>
+        </repository>
+        <snapshotRepository>
+          <uniqueVersion>true</uniqueVersion>
+          <id>maven.seasar.org</id>
+          <name>The Seasar Foundation Maven2 Snapshot Repository</name>
+          <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
   <modules>
     <module>../s2dao-spring</module>
   </modules>
@@ -151,20 +181,5 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
-
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>dav:https://www.seasar.org/maven/maven2</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>true</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Snapshot Repository</name>
-      <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
 
 </project>
