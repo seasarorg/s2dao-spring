@@ -9,13 +9,13 @@
 
     <bean class="org.seasar.dao.spring.autoregister.FileSystemBeanAutoRegister">
         <property name="addPackageName">
-            <value>examples.dao</value>
+            <value>org.seasar.dao.spring.example</value>
         </property>
         <property name="addClassNames">
             <value>.*Dao,.*Manager</value>
         </property>
         <property name="ignorePackageName">
-            <value>examples.dao</value>
+            <value>org.seasar.dao.spring.example</value>
         </property>
         <property name="ignoreClassNames">
             <value>.*Employee2Dao</value>
@@ -29,7 +29,7 @@
     </bean>
     <bean class="org.seasar.dao.spring.autoregister.FileSystemBeanAutoRegister">
         <property name="addPackageName">
-            <value>examples.dao</value>
+            <value>org.seasar.dao.spring.example</value>
         </property>
         <property name="addClassNames">
             <value>Employee2DaoImpl</value>

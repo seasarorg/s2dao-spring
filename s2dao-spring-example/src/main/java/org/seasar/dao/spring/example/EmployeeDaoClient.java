@@ -13,34 +13,43 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao;
+package org.seasar.dao.spring.example;
+
+import java.util.List;
 
 import org.springframework.beans.factory.access.BeanFactoryLocator;
 import org.springframework.beans.factory.access.BeanFactoryReference;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
 
-public class DepartmentDaoClient {
+public class EmployeeDaoClient {
 
     public static void main(String[] args) {
         BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator.getInstance();
         BeanFactoryReference ref = locator.useBeanFactory("context");
         ApplicationContext context = (ApplicationContext) ref.getFactory();
 
-        
         try {
-            DepartmentDao dao = (DepartmentDao) context
-                    .getBean("departmentDao");
-            Department dept = new Department();
-            dept.setDeptno(99);
-            dept.setDname("foo");
-            dao.insert(dept);
-            dept.setDname("bar");
-            System.out
-                    .println("before update versionNo:" + dept.getVersionNo());
-            dao.update(dept);
-            System.out.println("after update versionNo:" + dept.getVersionNo());
-            dao.delete(dept);
+            EmployeeDao dao = (EmployeeDao) context.getBean("employeeDao");
+            List employees = dao.getAllEmployees();
+            for (int i = 0; i < employees.size(); ++i) {
+                System.out.println(employees.get(i));
+            }
+
+            Employee employee = dao.getEmployee(7788);
+            System.out.println(employee);
+
+            int count = dao.getCount();
+            System.out.println("count:" + count);
+
+            dao.getEmployeeByJobDeptno(null, null);
+            dao.getEmployeeByJobDeptno("CLERK", null);
+            dao.getEmployeeByJobDeptno(null, new Integer(20));
+            dao.getEmployeeByJobDeptno("CLERK", new Integer(20));
+            dao.getEmployeeByDeptno(new Integer(20));
+            dao.getEmployeeByDeptno(null);
+
+            System.out.println("updatedRows:" + dao.update(employee));
         } finally {
             ref.release();
         }

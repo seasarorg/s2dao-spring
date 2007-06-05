@@ -13,25 +13,15 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao;
+package org.seasar.dao.spring.example;
 
-import java.util.List;
+public interface DepartmentDao {
 
-import org.seasar.dao.DaoMetaDataFactory;
-import org.seasar.dao.impl.AbstractDao;
+    public Class BEAN = Department.class;
 
-public abstract class Employee2DaoImpl extends AbstractDao implements
-        Employee2Dao {
+    public void insert(Department department);
 
-    public static Class BEAN = Employee.class;
+    public void update(Department department);
 
-    public Employee2DaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
-        super(daoMetaDataFactory);
-    }
-
-    public static String getEmployee_ARGS = "empno";
-
-    public List getEmployees(String ename) {
-        return getEntityManager().find("ename LIKE ?", "%" + ename + "%");
-    }
+    public void delete(Department department);
 }

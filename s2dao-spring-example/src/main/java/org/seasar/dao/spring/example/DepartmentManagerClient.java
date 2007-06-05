@@ -13,30 +13,33 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao;
-
-import java.util.List;
+package org.seasar.dao.spring.example;
 
 import org.springframework.beans.factory.access.BeanFactoryLocator;
 import org.springframework.beans.factory.access.BeanFactoryReference;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
 
-public class Employee2DaoClient {
+public class DepartmentManagerClient {
 
     public static void main(String[] args) {
         BeanFactoryLocator locator = ContextSingletonBeanFactoryLocator.getInstance();
         BeanFactoryReference ref = locator.useBeanFactory("context");
         ApplicationContext context = (ApplicationContext) ref.getFactory();
+
         try {
-            Employee2Dao dao = (Employee2Dao) context
-                    .getBean("employee2Dao");
-            List employees = dao.getEmployees("CO");
-            for (int i = 0; i < employees.size(); ++i) {
-                System.out.println(employees.get(i));
-            }
-            Employee employee = dao.getEmployee(7788);
-            System.out.println(employee);
+            DepartmentManager dao = (DepartmentManager) context
+                    .getBean("departmentManager");
+            Department dept = new Department();
+            dept.setDeptno(99);
+            dept.setDname("foo");
+            dao.generate(dept);
+            dept.setDname("bar");
+            System.out
+                    .println("before update versionNo:" + dept.getVersionNo());
+            dao.change(dept);
+            System.out.println("after update versionNo:" + dept.getVersionNo());
+            dao.destory(dept);
         } finally {
             ref.release();
         }

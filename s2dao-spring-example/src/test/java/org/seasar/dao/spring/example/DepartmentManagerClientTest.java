@@ -13,14 +13,16 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao;
+package org.seasar.dao.spring.example;
+
+import org.seasar.dao.spring.example.DepartmentManagerClient;
 
 import junit.framework.TestCase;
 
-public class EmployeeDaoClientTest extends TestCase {
+public class DepartmentManagerClientTest extends TestCase {
 
     public void testNoException() throws Exception {
-        EmployeeDaoClient.main(new String[] {});
+        DepartmentManagerClient.main(new String[] {});
     }
 
 }

@@ -13,14 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao;
+package org.seasar.dao.spring.example;
 
-import java.util.List;
+public class EmployeeSearchCondition {
 
-public interface Employee2Dao {
+    public static final String dname_COLUMN = "dname_0";
 
-    public List getEmployees(String ename);
+    private String job;
 
-    public Employee getEmployee(int empno);
+    private String dname;
 
+    public String getDname() {
+        return dname;
+    }
+
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 }
