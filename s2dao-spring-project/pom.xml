@@ -36,15 +36,21 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/</connection>
-    <developerConnection>scm:svn:https://a00zn.arksystems.co.jp/mpfsearch/svn/trunk/dev/mpfsearch-util/</developerConnection>
-    <url>https://a00zn.arksystems.co.jp/mpfsearch/svn/trunk/dev/mpfsearch-util/</url>
+    <connection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring-project/</connection>
+    <developerConnection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring-project/</developerConnection>
+    <url>https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring-project/</url>
   </scm>
   <organization>
     <name>The Seasar Foundation</name>
     <url>http://www.seasar.org/</url>
   </organization>
   <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+      </extension>
+    </extensions>
     <defaultGoal>validate</defaultGoal>
     <pluginManagement>
       <plugins>
@@ -145,4 +151,20 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>dav:https://www.seasar.org/maven/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Snapshot Repository</name>
+      <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>

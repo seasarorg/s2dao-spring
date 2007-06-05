@@ -17,6 +17,12 @@
   <description></description>
   <url>http://s2dao-spring.seasar.org/</url>
 
+  <scm>
+    <connection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring/</connection>
+    <developerConnection>scm:svn:https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring/</developerConnection>
+    <url>https://www.seasar.org/svn/sandbox/s2dao-spring/trunk/s2dao-spring/</url>
+  </scm>
+
   <repositories>
     <repository>
       <id>maven.seasar.org</id>
