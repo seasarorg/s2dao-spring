@@ -107,7 +107,7 @@
             <ref bean="daoNamingConvention"/>
         </property>
 	</bean>
-	<bean id="valueTypeFactory" class="framework.dao.SpringValueTypeFactoryImpl"/>
+	<bean id="valueTypeFactory" class="org.seasar.dao.spring.SpringValueTypeFactoryImpl"/>
 
 	<bean id="basicS2DaoInterceptor" class="org.seasar.dao.interceptors.S2DaoInterceptor">
         <constructor-arg>

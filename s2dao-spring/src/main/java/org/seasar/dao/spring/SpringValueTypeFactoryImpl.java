@@ -1,4 +1,4 @@
-package framework.dao;
+package org.seasar.dao.spring;
 
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.ValueType;

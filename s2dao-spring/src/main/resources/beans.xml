@@ -7,7 +7,7 @@
 
     <bean id="traceInterceptor" class="org.seasar.framework.aop.interceptors.TraceInterceptor"/>
 
-    <bean class="framework.autoregister.FileSystemBeanAutoRegister">
+    <bean class="org.seasar.dao.spring.autoregister.FileSystemBeanAutoRegister">
         <property name="addPackageName">
             <value>examples.dao</value>
         </property>
@@ -27,7 +27,7 @@
             </list>
         </property>
     </bean>
-    <bean class="framework.autoregister.FileSystemBeanAutoRegister">
+    <bean class="org.seasar.dao.spring.autoregister.FileSystemBeanAutoRegister">
         <property name="addPackageName">
             <value>examples.dao</value>
         </property>
